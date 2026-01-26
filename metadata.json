@@ -1,0 +1,5 @@
+{
+  "name": "3D DTW Matrix Visualizer",
+  "description": "A sophisticated 3D visualization tool for Dynamic Time Warping (DTW) matrices, featuring interactive 3D navigation, cost-based cell rendering, and path vector overlays.",
+  "requestFramePermissions": []
+}
