@@ -1,7 +1,7 @@
 
 import React, { useRef, useMemo, useEffect, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, Grid, Text, Line, Center, Arrows } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera, Grid, Text, Line, Center } from '@react-three/drei';
 import * as THREE from 'three';
 import { VisualizationState, Labels } from '../types';
 

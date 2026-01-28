@@ -9,11 +9,11 @@ const App: React.FC = () => {
   const [state, setState] = useState<VisualizationState>({
     matrix: [],
     path: [],
-    threshold: 0.5,
+    threshold: 1.0,
     showGrid: true,
-    showValues: false,
+    showValues: true,
     opacity: 0.4,
-    cellSize: 0.8,
+    cellSize: 0.7,
     colorScheme: 'viridis'
   });
 

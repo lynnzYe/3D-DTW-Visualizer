@@ -15,16 +15,16 @@ export const generateSampleMatrix = (nx: number, ny: number, nz: number): Matrix
       for (let z = 0; z < nz; z++) {
         // Create a basic distance metric from the "diagonal" (0,0,0) to (nx,ny,nz)
         // This makes the center of the diagonal path have lower costs
-        const idealX = (x / (nx-1));
-        const idealY = (y / (ny-1));
-        const idealZ = (z / (nz-1));
-        
+        const idealX = (x / (nx - 1));
+        const idealY = (y / (ny - 1));
+        const idealZ = (z / (nz - 1));
+
         const dist = Math.sqrt(
-          Math.pow(idealX - idealY, 2) + 
-          Math.pow(idealY - idealZ, 2) + 
+          Math.pow(idealX - idealY, 2) +
+          Math.pow(idealY - idealZ, 2) +
           Math.pow(idealX - idealZ, 2)
         );
-        
+
         // Add some noise
         const noise = Math.random() * 0.3;
         matrix[x][y][z] = dist + noise;
@@ -42,25 +42,25 @@ export const findOptimalPath = (matrix: Matrix3D): PathNode[] => {
   const nx = matrix.length;
   const ny = matrix[0]?.length || 0;
   const nz = matrix[0]?.[0]?.length || 0;
-  
+
   if (nx === 0 || ny === 0 || nz === 0) return [];
 
   const path: PathNode[] = [];
-  let curr = { x: 0, y: 0, z: 0 };
-  
+  let curr = { x: nx - 1, y: ny - 1, z: nz - 1 };
+
   path.push({ ...curr });
 
-  // Simple greedy search towards the end corner (nx-1, ny-1, nz-1)
-  while (curr.x < nx - 1 || curr.y < ny - 1 || curr.z < nz - 1) {
+  // Simple greedy search from the end corner (nx-1, ny-1, nz-1)
+  while (curr.x > 0 || curr.y > 0 || curr.z > 0) {
     const nextSteps = [
-      { x: curr.x + 1, y: curr.y, z: curr.z },
-      { x: curr.x, y: curr.y + 1, z: curr.z },
-      { x: curr.x, y: curr.y, z: curr.z + 1 },
-      { x: curr.x + 1, y: curr.y + 1, z: curr.z },
-      { x: curr.x + 1, y: curr.y, z: curr.z + 1 },
-      { x: curr.x, y: curr.y + 1, z: curr.z + 1 },
-      { x: curr.x + 1, y: curr.y + 1, z: curr.z + 1 },
-    ].filter(s => s.x < nx && s.y < ny && s.z < nz);
+      { x: curr.x - 1, y: curr.y, z: curr.z },
+      { x: curr.x, y: curr.y - 1, z: curr.z },
+      { x: curr.x, y: curr.y, z: curr.z - 1 },
+      { x: curr.x - 1, y: curr.y - 1, z: curr.z },
+      { x: curr.x - 1, y: curr.y, z: curr.z - 1 },
+      { x: curr.x, y: curr.y - 1, z: curr.z - 1 },
+      { x: curr.x - 1, y: curr.y - 1, z: curr.z - 1 },
+    ].filter(s => s.x >= 0 && s.y >= 0 && s.z >= 0);
 
     if (nextSteps.length === 0) break;
 
