@@ -1,20 +1,26 @@
 {
   "name": "3d-dtw-matrix-visualizer",
+  "homepage": "https://lynnzye.github.io/3D-DTW-Visualizer/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "gh-pages": "^6.3.0",
+    "lucide-react": "^0.563.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "lucide-react": "^0.563.0",
-    "@react-three/drei": "^10.7.7",
-    "three": "^0.182.0",
-    "@react-three/fiber": "^9.5.0"
+    "tailwindcss": "^4.1.18",
+    "three": "^0.182.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
